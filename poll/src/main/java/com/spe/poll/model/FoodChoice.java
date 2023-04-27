@@ -1,8 +1,8 @@
 package com.spe.poll.model;
 
 public enum FoodChoice {
-    Veg,
-    Nonveg,
-    Jain,
+    VEG,
+    NONVEG,
+    JAIN,
     NA
 }
