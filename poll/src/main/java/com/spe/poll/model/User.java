@@ -32,12 +32,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User   implements UserDetails  {
+public class User implements UserDetails  {
     @Id
     @GeneratedValue
     private int id;
-
-
 
     @NotBlank
     @NaturalId
@@ -45,10 +43,8 @@ public class User   implements UserDetails  {
     @Column
     private String username;
 
-
     @Size(max = 65555)
     private String password;
-
 
     @NaturalId
     @NotBlank
@@ -73,7 +69,6 @@ public class User   implements UserDetails  {
     private Role role;
 
 //    private Collection<? extends GrantedAuthority> authorities;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

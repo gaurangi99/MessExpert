@@ -5,7 +5,6 @@ import com.spe.poll.auth.AuthenticationResponse;
 import com.spe.poll.auth.RegisterRequest;
 import com.spe.poll.config.JwtService;
 import com.spe.poll.model.User;
-import com.spe.poll.model.Role;
 import com.spe.poll.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
