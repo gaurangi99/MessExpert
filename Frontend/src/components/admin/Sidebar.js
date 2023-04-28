@@ -18,21 +18,33 @@ const Sidebar = ({handleDashboard}) => {
                     </button>
                 </li>
                 <li>
+                    <button onClick={()=>handleDashboard("Admin")} className="nav-link text-white">
+                        Admin
+                    </button>
+                </li>
+                <li>
                     <button onClick={()=>handleDashboard("Menu")} className="nav-link text-white">
                         Menu
                     </button>
                 </li>
-                
+                <li>
+                    <button onClick={()=>handleDashboard("Special-Menu")} className="nav-link text-white">
+                        Special-Menu
+                    </button>
+                </li>
                 <li>
                     <a href="#" className="nav-link text-white">
                         Polls
                     </a>
                 </li>
+                
                 <li>
-                    <a href="#" className="nav-link text-white">
-                        Settings
-                    </a>
+                    <button onClick={()=>handleDashboard("Setting")} className="nav-link text-white">
+                        Edit your Profile
+                    </button>
                 </li>
+                
+                
             </ul>
         <hr/>
     </div>

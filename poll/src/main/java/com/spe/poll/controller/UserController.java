@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+@RequestMapping("/api/admin")
 @RestController
 public class UserController {
 
@@ -43,17 +43,17 @@ public class UserController {
         return userService.findUsersByRole(role);
     }
 
-    @PostMapping("admin/addUser")
+    @PostMapping("/addUser")
     public User saveDoctor(@RequestBody User user){
         return userService.addUser(user);
     }
 
-    @DeleteMapping("admin/deleteUserById/{id}")
+    @DeleteMapping("/deleteUserById/{id}")
     public String deleteUserById(@PathVariable int id){
         return userService.deleteUserById(id);
     }
 
-    @PutMapping("admin/updateUser")
+    @PutMapping("/updateUser")
     public User updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }

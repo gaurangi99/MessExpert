@@ -15,7 +15,12 @@ const Sidebar = ({handleDashboard}) => {
                 
                 <li>
                     <a href="#" className="nav-link text-white">
-                        Food Menu
+                        Menu
+                    </a>
+                </li>
+                <li>
+                    <a href="#" className="nav-link text-white">
+                        Special Menu
                     </a>
                 </li>
                 <li>
@@ -23,11 +28,12 @@ const Sidebar = ({handleDashboard}) => {
                         Polls
                     </a>
                 </li>
-                <li>
-                    <a href="#" className="nav-link text-white">
-                        Settings
-                    </a>
+                <li className="nav-item">
+                    <button onClick={()=>handleDashboard("Setting")} className="nav-link text-white">
+                        Edit Your Profile
+                    </button>
                 </li>
+                
             </ul>
         <hr/>
     </div>

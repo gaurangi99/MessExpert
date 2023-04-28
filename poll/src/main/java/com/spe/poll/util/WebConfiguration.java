@@ -1,4 +1,4 @@
-package util;
+package com.spe.poll.util;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -12,3 +12,4 @@ public class WebConfiguration implements WebMvcConfigurer {
     }
 
 }
+

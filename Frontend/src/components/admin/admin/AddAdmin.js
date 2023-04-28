@@ -5,23 +5,23 @@ import adminService from "../../../services/adminService";
 import {Form, FormGroup, Label, Input, Button, Col, Row, FormFeedback} from 'reactstrap';
 
 
-const AddStudent = () => {
+const AddAdmin = () => {
 
     let navigate = useNavigate();
 
     
 
-    const [student, setStudent] = useState({
+    const [admin, setAdmin] = useState({
         name: "",
         mobile: "",
         username:"",
         password:"",
         email:"",
-        foodChoice:"JAIN",
-        role:"STUDENT"
+        foodChoice:"NA",
+        role:"ADMIN"
     });
 
-    const {name,mobile,username,password,email,foodChoice,role} = student;
+    const {name,mobile,username,password,email,foodChoice,role} = admin;
 
     const initialError={
         name: "Cannot be empty",
@@ -29,7 +29,7 @@ const AddStudent = () => {
         
         password:"Enter the Password",
         email:"Cannot be empty",
-        foodChoice:"Select Food choice",
+        
        }
        const [formErrors,setFormErrors]=useState(initialError)
        const validateForm = (targetName, targetValue) => {
@@ -46,7 +46,7 @@ const AddStudent = () => {
            }
            if(targetName=== "name") {
              if (targetValue === "") {
-               setFormErrors({...formErrors, name: "Student Name is mandatory"})
+               setFormErrors({...formErrors, name: "Admin Name is mandatory"})
              } else {
                setFormErrors({...formErrors, name: ""})
              }
@@ -65,13 +65,7 @@ const AddStudent = () => {
        
            }
 
-        if(targetName==="foodChoice"){
-            if (targetValue === "") {
-                setFormErrors({...formErrors, foodChoice: "foodChoice is mandotry"})
-              } else {
-                setFormErrors({...formErrors, foodChoice: ""})
-              }
-        }
+       
         if(targetName==="username"){
             if (targetValue === "") {
                 setFormErrors({...formErrors, username: "User Name is mandatory"})
@@ -90,9 +84,9 @@ const AddStudent = () => {
         console.log(e.target.name );
         console.log(e.target.value);
         validateForm(e.target.name,e.target.value)
-        setStudent({...student, [e.target.name]: e.target.value});
+        setAdmin({...admin, [e.target.name]: e.target.value});
         
-        console.log(student);
+        console.log(admin);
     };
 
 
@@ -103,10 +97,10 @@ const AddStudent = () => {
         Object.values(formErrors).forEach((value) => nerrors += value.length === 0 ? 0 : 1);
         if(nerrors === 0) {
         try{
-            console.log(student)
+            console.log(admin)
 
-            const response=await adminService.addUser(student);
-            alert('Student Added')
+            const response=await adminService.addUser(admin);
+            alert('Admin Added')
            
         navigate("/admin");
         }
@@ -123,7 +117,7 @@ const AddStudent = () => {
         <div className="container">
         <div className="row">
             <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-                <h2 className="text-center m-4"> Add New Student </h2>
+                <h2 className="text-center m-4">Add New Admin</h2>
                 <Form onSubmit={(e) => onSubmit(e)}>
                     <div className="mb-3">
                         <FormGroup>
@@ -182,29 +176,7 @@ const AddStudent = () => {
                     </div>
                   
                    
-                    <div className="mb-3">
-                    <FormGroup>
-                        <Label htmlFor="foodChoice" className="form-label">
-                            foodChoice
-                        </Label>
-                        <Input
-                            valid = {formErrors.foodChoice===""} 
-                            invalid = {formErrors.foodChoice!==""}
-                            type="select"
-                            className="form-control"
-                            placeholder="Enter FoodChoice"
-                            name="foodChoice"
-                            value={foodChoice}
-
-                            onChange={(e) => onInputChange(e)}
-                        >
-                        <option id="JAIN" value="JAIN">Jain</option>
-                      <option id= "VEG" value="VEG">Veg</option>
-                      <option id="NONVEG" value="NONVEG">Non-veg</option>
-                        </Input>
-                        <FormFeedback>{formErrors.foodChoice}</FormFeedback>
-                        </FormGroup>
-                    </div>
+                    
                     
                         <div className="mb-3"><FormGroup>
                             <Label htmlFor="username" className="form-label">
@@ -256,4 +228,4 @@ const AddStudent = () => {
     );
 };
 
-export default AddStudent;
+export default AddAdmin;
