@@ -1,5 +1,6 @@
 package com.spe.poll.controller;
 
+import com.spe.poll.model.FoodChoice;
 import com.spe.poll.model.Role;
 import com.spe.poll.model.User;
 import com.spe.poll.repository.UserRepository;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@RestController("/api")
 public class UserController {
 
     @Autowired
@@ -43,6 +44,11 @@ public class UserController {
         return userService.findUsersByRole(role);
     }
 
+    @PostMapping("/getUsersByRoleAndFoodChoice/{role}/{foodChoice}")
+    public List<User> getUsersByRoleAndFoodChoice(@PathVariable Role role, @PathVariable FoodChoice foodChoice){
+        return userService.findUsersByRoleAndFoodChoice(role, foodChoice);
+    }
+
     @PostMapping("admin/addUser")
     public User saveDoctor(@RequestBody User user){
         return userService.addUser(user);
@@ -53,7 +59,7 @@ public class UserController {
         return userService.deleteUserById(id);
     }
 
-    @PutMapping("admin/updateUser")
+    @PutMapping("/updateUser")
     public User updateUser(@RequestBody User user){
         return userService.updateUser(user);
     }

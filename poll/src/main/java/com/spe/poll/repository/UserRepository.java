@@ -1,5 +1,6 @@
 package com.spe.poll.repository;
 
+import com.spe.poll.model.FoodChoice;
 import com.spe.poll.model.Role;
 import com.spe.poll.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,6 +21,8 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     List<User> findByIdIn(List<Long> userIds);
 
     List<User> findAllByRole(Role role);
+
+    List<User> findAllByRoleAndFoodChoice(Role role, FoodChoice foodChoice);
 
     Boolean existsByUsername(String username);
 

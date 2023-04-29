@@ -1,8 +1,10 @@
 package com.spe.poll;
 
 import com.spe.poll.model.FoodChoice;
+import com.spe.poll.model.Image;
 import com.spe.poll.model.User;
 import com.spe.poll.model.Role;
+import com.spe.poll.repository.ImageRepository;
 import com.spe.poll.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ public class PollApplication {
 	private JdbcTemplate jdbcTemplate;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private ImageRepository imageRepository;
+
 	private PasswordEncoder passwordEncoder;
 
 	public static void main(String[] args) {
@@ -26,6 +31,7 @@ public class PollApplication {
 
 	}
 	private String password= new BCryptPasswordEncoder().encode("admin");
+
 	@PostConstruct
 	public void initAdmin(){
 		if(!userRepository.existsById(1)) {
@@ -35,5 +41,4 @@ public class PollApplication {
 			userRepository.save(user);
 		}
 	}
-
 }
