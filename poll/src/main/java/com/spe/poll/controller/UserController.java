@@ -1,22 +1,25 @@
 package com.spe.poll.controller;
 
+import com.spe.poll.auth.UserRequest;
+import com.spe.poll.model.FoodChoice;
 import com.spe.poll.model.Role;
 import com.spe.poll.model.User;
 import com.spe.poll.repository.UserRepository;
 import com.spe.poll.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
+
+
 @RequestMapping("/api/admin")
 @RestController
 public class UserController {
-
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserRepository userRepository;
 
     @PostMapping("/getAllUsers")
     public List<User> getAllUsers(){
@@ -43,8 +46,14 @@ public class UserController {
         return userService.findUsersByRole(role);
     }
 
+
+    @PostMapping("/getUsersByRoleAndFoodChoice")
+    public List<User> getUsersByRoleAndFoodChoice(@RequestBody UserRequest userRequest){
+        return userService.findUsersByRoleAndFoodChoice(userRequest);
+    }
+
     @PostMapping("/addUser")
-    public User saveDoctor(@RequestBody User user){
+    public User saveUser(@RequestBody User user){
         return userService.addUser(user);
     }
 

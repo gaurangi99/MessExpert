@@ -1,6 +1,7 @@
 package com.spe.poll.service;
 
-
+import com.spe.poll.auth.UserRequest;
+import com.spe.poll.model.FoodChoice;
 import com.spe.poll.model.Role;
 import com.spe.poll.model.User;
 import com.spe.poll.repository.UserRepository;
@@ -45,7 +46,16 @@ public class UserService  {
     }
 
     public User addUser(User user){
-        return userRepository.save(user);
+        User newUser=new User();
+        newUser.setName(user.getName());
+        newUser.setUsername(user.getUsername());
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        newUser.setEmail(user.getEmail());
+        newUser.setMobile(user.getMobile());
+        newUser.setRole(user.getRole());
+        newUser.setFoodChoice(user.getFoodChoice());
+        System.out.println("user added !!");
+        return userRepository.save(newUser);
     }
 
     public String deleteUserById(int id){
@@ -64,5 +74,9 @@ public class UserService  {
         existingUser.setRole(user.getRole());
         System.out.println("user updated !!");
         return userRepository.save(existingUser);
+    }
+
+    public List<User> findUsersByRoleAndFoodChoice(UserRequest userRequest) {
+        return userRepository.findAllByRoleAndFoodChoice(userRequest.getRole(),userRequest.getFoodchoice());
     }
 }
