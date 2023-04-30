@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<User,Integer> {
 
     List<User> findAllByRole(Role role);
 
-    List<User> findAllByRoleAndFoodChoice(Role role, FoodChoice foodChoice);
+    List<User> findAllByRoleAndFoodChoice(Role role, FoodChoice foodchoice);
 
     Boolean existsByUsername(String username);
 

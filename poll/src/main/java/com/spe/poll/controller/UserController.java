@@ -48,8 +48,8 @@ public class UserController {
 
 
     @PostMapping("/getUsersByRoleAndFoodChoice")
-    public ResponseEntity<List<User>> getUsersByRoleAndFoodChoice(@RequestBody UserRequest userRequest){
-        return ResponseEntity.ok(userService.findUsersByRoleAndFoodChoice(userRequest));
+    public List<User> getUsersByRoleAndFoodChoice(@RequestBody UserRequest userRequest){
+        return userService.findUsersByRoleAndFoodChoice(userRequest);
     }
 
     @PostMapping("/addUser")

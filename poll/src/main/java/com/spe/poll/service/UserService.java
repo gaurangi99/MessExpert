@@ -77,6 +77,6 @@ public class UserService  {
     }
 
     public List<User> findUsersByRoleAndFoodChoice(UserRequest userRequest) {
-        return userRepository.findAllByRoleAndFoodChoice(userRequest.getRole(),userRequest.getFoodChoice());
+        return userRepository.findAllByRoleAndFoodChoice(userRequest.getRole(),userRequest.getFoodchoice());
     }
 }

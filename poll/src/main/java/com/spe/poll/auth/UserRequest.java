@@ -13,5 +13,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserRequest {
     private Role role;
-    private FoodChoice foodChoice;
+    private FoodChoice foodchoice;
 }
