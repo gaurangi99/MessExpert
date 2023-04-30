@@ -1,33 +1,65 @@
 import axios from "axios";
-import configData from './apiConfig.json'
-const api = axios.create(
-    {
-        baseURL : configData['url']
+import configData from './apiConfig.json';
+const api = axios.create({
+    baseURL: configData['url'],
+    headers: {
+        "Content-type": "application/json",
+        'Access-Control-Allow-Origin': '*'
     }
+    });
+//---------- appending token for every api call---------//
+api.interceptors.request.use(
+    config =>{
+        const token = localStorage.getItem("token");
+        if(token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
+        return config;
+    },
+    error => Promise.reject(error)
 );
 
-const getStudent = async (id) => {
-    const response = await api.post(`api/admin/getStudent/${id}`);
+
+
+//------------------User related services-----------------//
+const getUser = async (id) => {
+    const response = await api.post(`api/admin/getUserById/${id}`);
     return response;
 };
 
-const getallstudent = async ()=>{
-    const response = await api.post("api/admin/getAllStudents");
+
+const getUserByRole = async(role)=>{
+    const response= await api.post(`api/admin/getUsersByRole/${role}`);
     return response;
-};
-const addStudent = async (student) =>{
-    await api.post("api/admin/addStudent", student);
-};
-
-
-const updateStudent = async (student)=>{
-    await api.put("api/admin/updateStudent", student);
 }
-const deletestudent = async (id) =>{
-    await api.delete(`api/admin/deleteStudent/${id}`);
+
+const getalluser = async ()=>{
+
+    const response = await api.post("api/admin/getAllUsers");
+    console.log()
+    return response;
+};
+const addUser = async (user) =>{
+   const response= await api.post("api/admin/addUser", user);
+   return response;
 };
 
 
+const updateUser = async (user)=>{
+   const response= await api.put("api/admin/updateUser", user);
+   return response;
+};
+const deleteuser = async (id) =>{
+    const response=await api.delete(`api/admin/deleteUserById/${id}`);
+    return response;
+};
 
-const aService = { getStudent,addStudent,getallstudent,deletestudent,updateStudent}
-export default aService
+
+const getUserByUsername= async(username)=>{
+    const response=await api.post(`api/admin/getUserByUsername/${username}`);
+    return response;
+};
+
+
+const aService = { getUser,addUser,getalluser,deleteuser,updateUser,getUserByUsername,getUserByRole}
+export default aService;

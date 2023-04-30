@@ -1,5 +1,6 @@
 package com.spe.poll.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.spe.poll.model.audit.DateAudit;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -69,6 +70,7 @@ public class User implements UserDetails  {
     private Role role;
 
 //    private Collection<? extends GrantedAuthority> authorities;
+    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role.name()));

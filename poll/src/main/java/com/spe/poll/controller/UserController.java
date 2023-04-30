@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController("/api")
+
+
+@RequestMapping("/api/admin")
+@RestController
+
 public class UserController {
 
     @Autowired
@@ -44,17 +48,17 @@ public class UserController {
         return userService.findUsersByRole(role);
     }
 
+
     @PostMapping("/getUsersByRoleAndFoodChoice/{role}/{foodChoice}")
     public List<User> getUsersByRoleAndFoodChoice(@PathVariable Role role, @PathVariable FoodChoice foodChoice){
         return userService.findUsersByRoleAndFoodChoice(role, foodChoice);
     }
 
-    @PostMapping("admin/addUser")
-    public User saveDoctor(@RequestBody User user){
-        return userService.addUser(user);
-    }
 
-    @DeleteMapping("admin/deleteUserById/{id}")
+    @PostMapping("/addUser")
+
+
+    @DeleteMapping("/deleteUserById/{id}")
     public String deleteUserById(@PathVariable int id){
         return userService.deleteUserById(id);
     }

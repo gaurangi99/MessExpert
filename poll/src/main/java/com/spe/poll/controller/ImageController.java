@@ -42,4 +42,6 @@ public class ImageController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(uploadSplMenu);
     }
+
+    //student retrieval of menu apis
 }

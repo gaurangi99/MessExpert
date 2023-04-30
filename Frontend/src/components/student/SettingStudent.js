@@ -1,15 +1,15 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import adminService from "../../../services/adminService";
+import React, {useEffect, useState} from "react";
+import {Link, useNavigate, useParams} from "react-router-dom";
+import adminService from "../../services/adminService";
 import {Form, FormGroup, Label, Input, Button, Col, Row, FormFeedback} from 'reactstrap';
 
-
-const AddStudent = () => {
-
+function Setting({user}){
     let navigate = useNavigate();
 
+    const { id } = useParams();
     
+   
 
     const [student, setStudent] = useState({
         name: "",
@@ -17,96 +17,80 @@ const AddStudent = () => {
         username:"",
         password:"",
         email:"",
-        foodChoice:"JAIN",
+        foodChoice:"",
         role:"STUDENT"
+       
     });
 
     const {name,mobile,username,password,email,foodChoice,role} = student;
-
     const initialError={
-        name: "Cannot be empty",
-        mobile: "CAnnot be empty",
+        name: "",
+        mobile: "",
         
-        password:"Enter the Password",
-        email:"Cannot be empty",
-        foodChoice:"Select Food choice",
+        password:"ReEnter the Password",
+        email:"",
+        foodChoice:"",
        }
-       const [formErrors,setFormErrors]=useState(initialError)
-       const validateForm = (targetName, targetValue) => {
-         console.log("INSIDE Validation function")  
-         console.log(targetName, targetValue)
-           if(targetName=== "email") {
-             if (targetValue === "") {
-               setFormErrors({...formErrors, email: "email is mandatory"})
-             } else if (new RegExp("^[A-Za-z0-9.]+@iiitb\.ac\.in$").test(targetValue)===false) {
-               setFormErrors({...formErrors, email: "Invalid emailId"})
-             } else {
-               setFormErrors({...formErrors, email: ""})
-             }
-           }
-           if(targetName=== "name") {
-             if (targetValue === "") {
-               setFormErrors({...formErrors, name: "Student Name is mandatory"})
-             } else {
-               setFormErrors({...formErrors, name: ""})
-             }
-           }
-           if(targetName=== "mobile") {
-             if (new RegExp("^\\d{10}$").test(targetValue)===false) setFormErrors( {...formErrors, mobile: "Invalid Mobile only(10 digits allowed)"})
-             else setFormErrors( {...formErrors, mobile: ""})
-           }
-          if(targetName==="password"){
-               if(targetValue.length<=4){
-                   setFormErrors({...formErrors,password:"Password is too short"})
-               }
-               else {
-                   setFormErrors({...formErrors,password:""})
-               }
-       
-           }
-
-        if(targetName==="foodChoice"){
-            if (targetValue === "") {
-                setFormErrors({...formErrors, foodChoice: "foodChoice is mandotry"})
-              } else {
-                setFormErrors({...formErrors, foodChoice: ""})
-              }
+    const [formErrors,setFormErrors]=useState(initialError)
+    const validateForm = (targetName, targetValue) => {
+        // console.log(targetName, targetValue)
+        if(targetName=== "email") {
+          if (targetValue === "") {
+            setFormErrors({...formErrors, email: "email is mandatory"})
+          } else if (new RegExp("^[A-Za-z0-9]+@iiitb\.ac\.in$").test(targetValue)===false) {
+            setFormErrors({...formErrors, email: "Invalid emailId"})
+          } else {
+            setFormErrors({...formErrors, email: ""})
+          }
         }
-        if(targetName==="username"){
-            if (targetValue === "") {
-                setFormErrors({...formErrors, username: "User Name is mandatory"})
-              } else {
-                setFormErrors({...formErrors, username: ""})
-              }
+        if(targetName=== "name") {
+          if (targetValue === "") {
+            setFormErrors({...formErrors, name: "Student Name is mandatory"})
+          } else {
+            setFormErrors({...formErrors, name: ""})
+          }
         }
-
-
-         }
-
-
-
+        if(targetName=== "mobile") {
+          if (new RegExp("^\\d{10}$").test(targetValue)===false) setFormErrors( {...formErrors, mobile: "Invalid Mobile only(10 digits allowed)"})
+          else setFormErrors( {...formErrors, mobile: ""})
+        }
+       if(targetName==="password"){
+            if(targetValue.length<=4){
+                setFormErrors({...formErrors,password:"Password is too short"})
+            }
+            else {
+                setFormErrors({...formErrors,password:""})
+            }
+    
+        }
+      }
+    
     const onInputChange = (e) => {
-        console.log("inside InpulChange")
         console.log(e.target.name );
         console.log(e.target.value);
-        validateForm(e.target.name,e.target.value)
         setStudent({...student, [e.target.name]: e.target.value});
-        
+        validateForm(e.target.name,e.target.value)
         console.log(student);
     };
+
+    useEffect(() => {
+        loadUser();
+    }, []);
 
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        
+        // await axios.put("http://localhost:9191/api/admin/updateStudent", student);
+        // await adminService.updateStudent(student);
+        // navigate("/");
         let nerrors = 0;
         Object.values(formErrors).forEach((value) => nerrors += value.length === 0 ? 0 : 1);
         if(nerrors === 0) {
         try{
             console.log(student)
 
-            const response=await adminService.addUser(student);
-            alert('Student Added')
+            const response=await adminService.updateUser(student);
+            alert('Student Updated')
            
         navigate("/admin");
         }
@@ -117,13 +101,26 @@ const AddStudent = () => {
     else{
         alert(nerrors+ ' errors found! Please Correct')
     }
+        
+
+
+
     };
 
+    const loadUser = async () => {
+        // const result = await axios.get(`http://localhost:9191/api/admin/getStudent/${id}`);
+        const result= await adminService.getUserByUsername(user.username);
+        setStudent(result.data);
+        setStudent({
+            ...result.data,
+            password:""
+        })
+    };
     return (
         <div className="container">
         <div className="row">
             <div className="col-md-6 offset-md-3 border rounded p-4 mt-2 shadow">
-                <h2 className="text-center m-4"> Add New Student </h2>
+                <h2 className="text-center m-4"> Update Student Details </h2>
                 <Form onSubmit={(e) => onSubmit(e)}>
                     <div className="mb-3">
                         <FormGroup>
@@ -206,22 +203,6 @@ const AddStudent = () => {
                         </FormGroup>
                     </div>
                     
-                        <div className="mb-3"><FormGroup>
-                            <Label htmlFor="username" className="form-label">
-                                UserName
-                            </Label>
-                            <Input
-                            valid={formErrors.username===""}
-                            invalid={formErrors.username!==""}
-                                type="text"
-                                className="form-control"
-                                placeholder="Enter UserName"
-                                name="username"
-                                value={username}
-                                onChange={(e) => onInputChange(e)}
-                            />
-                            <FormFeedback>{formErrors.username}</FormFeedback>
-                        </FormGroup></div>
                    
                     <div className="mb-3"><FormGroup>
                         <Label htmlFor="password" className="form-label">
@@ -244,7 +225,7 @@ const AddStudent = () => {
                     <center><Button type="submit" className="btn btn-outline-primary">
                         Submit
                     </Button>
-                        <Link className="btn btn-outline-danger mx-2" to="/admin">
+                        <Link className="btn btn-outline-danger mx-2" navigate to="/student">
                             Cancel
                         </Link>
                     </center>
@@ -256,4 +237,5 @@ const AddStudent = () => {
     );
 };
 
-export default AddStudent;
+
+export default Setting;

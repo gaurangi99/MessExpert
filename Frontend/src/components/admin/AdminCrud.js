@@ -3,28 +3,28 @@ import {Link, useParams} from "react-router-dom";
 import axios from "axios";
 import adminService from "../../services/adminService";
 
-const Student = () => {
+const Admin = () => {
 
 
-    const [students, setStudents] = useState([]);
+    const [admins, setAdmins] = useState([]);
 
     const { id } = useParams();
 
     useEffect(() => {
-        loadStudents();
+        loadAdmins();
     }, []);
 
-    const loadStudents = async () => {
+    const loadAdmins = async () => {
         // const result = await adminService.getalluser()
-        const result = await adminService.getUserByRole("STUDENT")
-        // const result = await axios.get("http://localhost:9191/api/admin/getAllStudents");
-        setStudents(result.data);
+        const result = await adminService.getUserByRole("ADMIN")
+        // const result = await axios.get("http://localhost:9191/api/admin/getAllAdmins");
+        setAdmins(result.data);
         console.log(result.data);
     };
-    const deleteStudent = async (id) => {
-        // await axios.delete(`http://localhost:9191/api/admin/deleteStudent/${id}`);
+    const deleteAdmin = async (id) => {
+        // await axios.delete(`http://localhost:9191/api/admin/deleteAdmin/${id}`);
         await adminService.deleteuser(id);
-        loadStudents();
+        loadAdmins();
     };
 
     return (
@@ -41,33 +41,33 @@ const Student = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {students.map((student, index) => (
+                    {admins.map((admin, index) => (
                         <tr  key={index} >
                             <th scope="row">
                                 {index+1}
                             </th>
-                            <td>{student.name}</td>
-                            <td>{student.username}</td>
-                            <td>{student.mobile}</td>
+                            <td>{admin.name}</td>
+                            <td>{admin.username}</td>
+                            <td>{admin.mobile}</td>
                             <td>
                                 <Link
                                     className="btn btn-primary mx-2"
-                                    to={`/viewstudent/${student.id}`}
+                                    to={`/viewadmin/${admin.id}`}
                                 >
                                     View
                                 </Link>
                                 <Link
                                     className="btn btn-warning mx-2"
-                                    to={`/editstudent/${student.id}`}
+                                    to={`/editadmin/${admin.id}`}
                                 >
                                     Edit
                                 </Link>
                                 <button
                                     className="btn btn-danger mx-2"
                                     onClick={()=> {
-                                        if(window.confirm(`Are you sure you want to remove ${student.name} ?` ))
+                                        if(window.confirm(`Are you sure you want to remove ${admin.name} ?` ))
                                         {
-                                            deleteStudent(student.id)
+                                            deleteAdmin(admin.id)
                                         };
                                     }}
                                 >
@@ -81,8 +81,8 @@ const Student = () => {
                     <tfoot>
                     <tr>
                         <td>
-                            <Link className="btn btn-outline-primary" to="/addstudent">
-                                Add student
+                            <Link className="btn btn-outline-primary" to="/addadmin">
+                                Add admin
                             </Link>
                         </td>
                     </tr>
@@ -95,4 +95,4 @@ const Student = () => {
     );
 };
 
-export default Student;
+export default Admin;
