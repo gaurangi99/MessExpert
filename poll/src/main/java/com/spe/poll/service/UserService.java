@@ -1,6 +1,6 @@
 package com.spe.poll.service;
 
-
+import com.spe.poll.auth.UserRequest;
 import com.spe.poll.model.FoodChoice;
 import com.spe.poll.model.Role;
 import com.spe.poll.model.User;
@@ -45,10 +45,6 @@ public class UserService  {
         return userRepository.findAllByRole(role);
     }
 
-    public List<User> findUsersByRoleAndFoodChoice(Role role, FoodChoice foodChoice){
-        return userRepository.findAllByRoleAndFoodChoice(role, foodChoice);
-    }
-
     public User addUser(User user){
         User newUser=new User();
         newUser.setName(user.getName());
@@ -78,5 +74,9 @@ public class UserService  {
         existingUser.setRole(user.getRole());
         System.out.println("user updated !!");
         return userRepository.save(existingUser);
+    }
+
+    public List<User> findUsersByRoleAndFoodChoice(UserRequest userRequest) {
+        return userRepository.findAllByRoleAndFoodChoice(userRequest.getRole(),userRequest.getFoodChoice());
     }
 }

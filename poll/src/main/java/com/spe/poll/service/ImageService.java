@@ -43,4 +43,8 @@ public class ImageService {
         System.out.println("Menu image added !!");
         return imageRepository.save(newImg);
     }
+
+    public Image findMenuImage(){
+        return imageRepository.getImageByImageDataNotNull().get();
+    }
 }

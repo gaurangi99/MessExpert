@@ -44,4 +44,10 @@ public class ImageController {
     }
 
     //student retrieval of menu apis
+    @PostMapping("/student/getMenu")
+    public ResponseEntity<?> getMenu(){
+        Image image=imageService.findMenuImage();
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(image);
+    }
 }
