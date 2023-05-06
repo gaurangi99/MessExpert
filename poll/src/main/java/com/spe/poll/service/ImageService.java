@@ -5,8 +5,6 @@ import com.spe.poll.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,7 +42,13 @@ public class ImageService {
         return imageRepository.save(newImg);
     }
 
-    public Image findMenuImage(){
-        return imageRepository.getImageByImageDataNotNull().get();
+    public Optional<Image> findMenuImage(){
+        Optional<Image> img1=imageRepository.findByFileName("IIITB_MENU");
+        Optional<Image> img2=imageRepository.findByFileName("IIITB_SPL_MENU");
+
+        if(!img2.get().getImageData().equals(""))
+            return img2;
+        else
+            return img1;
     }
 }

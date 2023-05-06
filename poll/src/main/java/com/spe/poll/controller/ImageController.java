@@ -21,8 +21,14 @@ public class ImageController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(uploadMenuImage);
     }
+    @PutMapping("/admin/addSplMenu")
+    public ResponseEntity<?> uploadSplMenuImage(@RequestBody Image image){
+        String uploadSplMenu = String.valueOf(imageService.addSplMenu(image));
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(uploadSplMenu);
+    }
 
-    @PostMapping("/{fileName}")
+    @PostMapping("/admin/getMenu/{fileName}")
     public ResponseEntity<?> downloadImage(@PathVariable String fileName){
         Image image=imageService.findMenuImageByFileName(fileName);
         return ResponseEntity.status(HttpStatus.OK)
@@ -36,17 +42,12 @@ public class ImageController {
                 .body("Spl. Menu deleted!");
     }
 
-    @PutMapping("/admin/addSplMenu")
-    public ResponseEntity<?> uploadSplMenuImage(@PathVariable Image image){
-        String uploadSplMenu = String.valueOf(imageService.addSplMenu(image));
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(uploadSplMenu);
-    }
+
 
     //student retrieval of menu apis
     @PostMapping("/student/getMenu")
     public ResponseEntity<?> getMenu(){
-        Image image=imageService.findMenuImage();
+        Optional<Image> image=imageService.findMenuImage();
         return ResponseEntity.status(HttpStatus.OK)
                 .body(image);
     }

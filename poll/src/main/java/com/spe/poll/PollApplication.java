@@ -40,5 +40,15 @@ public class PollApplication {
 					"admin@gmail.com","9835674980","Satya", FoodChoice.NA,Role.ADMIN);
 			userRepository.save(user);
 		}
+		if(!imageRepository.existsById(1L)){
+			Image image = new Image(1L, "IIITB_MENU", null);
+			imageRepository.save(image);
+		}
+		if(!imageRepository.existsById(2L)){
+			Image image = new Image(2L, "IIITB_SPL_MENU",null);
+			imageRepository.save(image);
+		}
 	}
+
+
 }

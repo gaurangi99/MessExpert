@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 
 import StudentHome from "./StudentHome";
 import Setting from './SettingStudent';
+import Menu from './Menu';
+import Timming from './Timming'
 
 import {Button, Col} from "reactstrap"
 
@@ -10,12 +12,16 @@ function StudentDashboard({user}) {
     
     const falseState={
         studentHome:false,
-        setting:false
+        setting:false,
+        menu:false,
+        timing:false
     }
     
     const [studentState,setStudentState] = useState({
         studentHome: true,
-        setting:false
+        setting:false,
+        menu:false,
+        timing:false
         
     })
     const handleDashboard = (action)=> {
@@ -25,8 +31,8 @@ function StudentDashboard({user}) {
 
             case "STUDENT-HOME":
                 setStudentState({
-                    studentHome: true,
-                    student: false,
+                    ...falseState,
+                    studentHome:true
         
                 })
                 break;
@@ -34,7 +40,23 @@ function StudentDashboard({user}) {
                 setStudentState({
                     ...falseState,
                     setting:true
+
                 })
+                break;
+
+            case "MENU":
+                setStudentState({
+                    ...falseState,
+                    menu:true
+                })
+
+                break;
+                case "TIMING":
+                setStudentState({
+                    ...falseState,
+                    timing:true
+                })
+
                 break;
             
             
@@ -52,6 +74,12 @@ function StudentDashboard({user}) {
                             {studentState.studentHome && <StudentHome/>}
                             {
                                 studentState.setting && <Setting user={user}/>
+                            }
+                            {
+                                studentState.menu && <Menu/>
+                            }
+                            {
+                                studentState.timing && <Timming/>
                             }
                         </div>
                     </div>
