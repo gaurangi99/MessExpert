@@ -34,7 +34,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User implements UserDetails  {
+public class User extends DateAudit implements UserDetails {
     @Id
     @GeneratedValue
     private int id;
@@ -186,9 +186,5 @@ public class User implements UserDetails  {
         this.name=name;
         this.foodChoice=foodChoice;
         this.role=role;
-    }
-
-    public Instant getCreatedAt() {
-
     }
 }
