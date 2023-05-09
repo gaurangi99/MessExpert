@@ -14,14 +14,14 @@ const Sidebar = ({handleDashboard}) => {
                 </li>
                 
                 <li>
-                    <a href="#" className="nav-link text-white">
+                <button onClick={()=>handleDashboard("MENU")} className="nav-link text-white">
                         Menu
-                    </a>
+                    </button>
                 </li>
                 <li>
-                    <a href="#" className="nav-link text-white">
-                        Special Menu
-                    </a>
+                <button onClick={()=>handleDashboard("TIMING")} className="nav-link text-white">
+                        Mess Timming
+                    </button>
                 </li>
                 <li>
                     <a href="#" className="nav-link text-white">
