@@ -45,6 +45,6 @@ public class ImageService {
     }
 
     public Image findMenuImage(){
-        return imageRepository.getImageByImageDataNotNull().get();
+        return imageRepository.getImageByImageDataNotNull();
     }
 }

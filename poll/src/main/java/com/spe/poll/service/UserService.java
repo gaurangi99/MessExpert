@@ -1,13 +1,11 @@
 package com.spe.poll.service;
 
 import com.spe.poll.auth.UserRequest;
-import com.spe.poll.model.FoodChoice;
 import com.spe.poll.model.Role;
 import com.spe.poll.model.User;
 import com.spe.poll.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,14 +14,20 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class UserService  {
+public class UserService {
     @Autowired
     private UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username).
-                orElseThrow(()->new UsernameNotFoundException("User not found"));
+        try{
+            return userRepository.findUserByUsername(username);
+        } catch (Exception e) {
+            throw new RuntimeException("User not found!");
+        }
+//        catch{
+//            return new UsernameNotFoundException("User not found!");
+//        }
     }
     public List<User> findAllUsers(){
         return userRepository.findAll();
