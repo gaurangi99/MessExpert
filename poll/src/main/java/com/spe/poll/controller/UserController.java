@@ -18,11 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
-
-
 
 @RequestMapping("/api/admin")
 @RestController
@@ -132,7 +129,6 @@ public class UserController {
         return pollService.getPollsCreatedBy(username, currentUser, page, size);
     }
 
-
     @PostMapping("/users/{username}/votes")
     public PagedResponse<PollResponse> getPollsVotedBy(@PathVariable(value = "username") String username,
                                                        @CurrentUser User currentUser,
@@ -140,5 +136,4 @@ public class UserController {
                                                        @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return pollService.getPollsVotedBy(username, currentUser, page, size);
     }
-
 }
