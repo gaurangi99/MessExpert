@@ -16,15 +16,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class PollApplication {
-
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
 	private ImageRepository imageRepository;
-
-	private PasswordEncoder passwordEncoder;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PollApplication.class, args);
@@ -49,6 +44,4 @@ public class PollApplication {
 			imageRepository.save(image);
 		}
 	}
-
-
 }
