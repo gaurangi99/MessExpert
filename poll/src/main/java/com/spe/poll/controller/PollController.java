@@ -27,29 +27,19 @@ import java.net.URI;
 @RestController
 @RequestMapping("/api/polls")
 public class PollController {
-
-    @Autowired
-    private PollRepository pollRepository;
-
-    @Autowired
-    private VoteRepository voteRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
     @Autowired
     private PollService pollService;
 
     private static final Logger logger = LoggerFactory.getLogger(PollController.class);
 
-    @PostMapping
+    @PostMapping("/getPolls")
     public PagedResponse<PollResponse> getPolls(@CurrentUser User currentUser,
                                                 @RequestParam(value = "page", defaultValue = AppConstants.DEFAULT_PAGE_NUMBER) int page,
                                                 @RequestParam(value = "size", defaultValue = AppConstants.DEFAULT_PAGE_SIZE) int size) {
         return pollService.getAllPolls(currentUser, page, size);
     }
 
-    @PostMapping
+    @PostMapping("/addPoll")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<?> createPoll(@Valid @RequestBody PollRequest pollRequest) {
         Poll poll = pollService.createPoll(pollRequest);
