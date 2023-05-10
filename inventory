@@ -1,0 +1,4 @@
+[local]
+#client1 ansible_host=172.17.0.2 ansible_connection=ssh ansible_user=ansible_usr ansible_sudo_pass=password
+client2 ansible_host=192.168.1.11 ansible_connection=ssh ansible_user=ansible_usr ansible_sudo_pass=password
+
