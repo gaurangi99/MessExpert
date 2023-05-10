@@ -42,8 +42,6 @@ public class ImageController {
                 .body("Spl. Menu deleted!");
     }
 
-
-
     //student retrieval of menu apis
     @PostMapping("/student/getMenu")
     public ResponseEntity<?> getMenu(){

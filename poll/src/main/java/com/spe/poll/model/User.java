@@ -16,6 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -33,7 +34,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User implements UserDetails  {
+public class User extends DateAudit implements UserDetails {
     @Id
     @GeneratedValue
     private int id;
@@ -176,7 +177,7 @@ public class User implements UserDetails  {
     public void setRole(Role role) {
         this.role = role;
     }
-  public User(String username,String password,String email,
+    public User(String username,String password,String email,
               String mobile,String name,FoodChoice foodChoice,Role role){
         this.username=username;
         this.password=password;
@@ -185,5 +186,5 @@ public class User implements UserDetails  {
         this.name=name;
         this.foodChoice=foodChoice;
         this.role=role;
-  }
+    }
 }
