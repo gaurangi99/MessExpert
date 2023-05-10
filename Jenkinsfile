@@ -4,8 +4,8 @@ pipeline {
 
     environment {
         PASS = credentials('registry-pass')
-        IMAGE_BE="MeBackend"
-        IMAGE_FE="MeFrontend"
+        IMAGE_BE="mebackend"
+        IMAGE_FE="mefrontend"
         USER="shubhanshi"
 
 
