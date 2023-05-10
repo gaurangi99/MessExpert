@@ -21,7 +21,7 @@ pipeline {
 
             post {
                 success {
-                   archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                   archiveArtifacts artifacts: 'poll/target/*.jar', fingerprint: true
                 }
             }
         }
