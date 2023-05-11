@@ -51,14 +51,15 @@ pipeline {
 
         stage('Ansible Deploy') {
                     steps {
-//                         ansiblePlaybook becomeUser: 'null',
-//                         extras: "-e tag=$BUILD_NUMBER -e user=$USER -e image=$IMAGE",
-//                         colorized: true,
-//                         installation: 'Ansible',
-//                         inventory: 'inventory',
-//                         playbook: 'deploy-playbook.yml',
-//                         sudoUser: 'null'
-                          sh 'echo "reached ansible" '
+                        ansiblePlaybook becomeUser: 'null',
+                        extras: "-e user=$USER",
+                        colorized: true,
+                        installation: 'Ansible',
+                        inventory: 'inventory',
+                        playbook: 'deploy-playbook.yml',
+                        sudoUser: 'null'
+
+//                         sh 'echo "reached ansible" '
                     }
                 }
     }

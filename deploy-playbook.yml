@@ -8,17 +8,18 @@
       service:
         name: docker
         state: started
-    - name: Pull Docker Image
-      docker_image:
-        name: "{{user}}/{{image}}:{{tag}}"
-        source: pull
-
-    - name: Create & Start Calculator Docker Container
-      docker_container:
-        name: calculator-using-devops
-        image: "{{user}}/{{image}}:{{tag}}"
-        state: started
-        tty: yes
-        interactive: yes
-        volumes:
-          /logs:/logs
+    - name: copy docker file
+      copy:
+        src: docker-compose.yml
+        dest: docker-compose.yml
+    - name: shell docker
+      shell:
+        cmd: docker-compose down
+    - name: docker compose
+      docker_compose:
+        project_src: .
+        files:
+          - docker-compose.yml
+        state: present
+    - name: Prune dangling docker images
+      command: docker image prune --force
