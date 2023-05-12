@@ -1,19 +1,27 @@
-# Fetching the latest node image on apline linux
-FROM node:alpine AS development
+# Base image
+FROM node:19.4.0-alpine
+# FROM --platform=linux/amd64 node:14.17.3-alpine3.14
 
-# Declaring env
-ENV NODE_ENV development
+# Set the working directory
+WORKDIR /app
 
-# Setting up the work directory
-WORKDIR /react-app
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-# Installing dependencies
-COPY ./package.json /react-app
+# Install dependencies
 RUN npm install
 
-# Copying all the files in our project
+# Copy the rest of the application code
 COPY . .
+
+# Build the React app
+RUN npm run build
+
+# Set the environment variable to production
+ENV NODE_ENV=production
+
+# Expose port 3000
 EXPOSE 3000
 
-# Starting our application
-CMD [ "npm", "start" ]
+# Start the server
+CMD ["npm", "start"]

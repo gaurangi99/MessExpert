@@ -13,9 +13,9 @@ services:
       MYSQL_USER: kakshi
       MYSQL_PASSWORD: password
     ports:
-      - "3307:3306"
-    networks:
-      - backend
+      - "3306:3306"
+#    networks:
+#      - backend
 
   spring-app:
     image: "shubhanshi/mebackend:v3"
@@ -26,30 +26,30 @@ services:
       - mysqldb
     container_name: backend_container
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3307/spe_final?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/spe_final?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: kakshi
       SPRING_DATASOURCE_PASSWORD: password
-    networks: # Networks to join (Services on the same network can communicate with each other using their name)
-      - backend
-      - frontend
+#    networks: # Networks to join (Services on the same network can communicate with each other using their name)
+#      - backend
+#      - frontend
 
   reactjs:
     image: "shubhanshi/mefrontend:v3"
     restart: always
     container_name: frontend_container
-    depends_on:
-      - spring-app
+#    depends_on:
+#      - spring-app
     command:
       - npm start
     ports:
       - "3000:3000"
-    networks:
-      - frontend
+#    networks:
+#      - frontend
 
 volumes:
   mysql-data:
     driver: local
 
-networks:
-  backend:
-  frontend:
+#networks:
+#  backend:
+#  frontend:
