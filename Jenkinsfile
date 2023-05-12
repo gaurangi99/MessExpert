@@ -13,7 +13,7 @@ pipeline {
 
     stages {
 
-        stage('Building jar') {
+        stage('Building jar for backend') {
             steps {
                 sh 'pwd'
                 sh './jenkins/build/mvn.sh mvn -B -DskipTests clean package'
@@ -26,7 +26,7 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Testing the backend') {
             steps {
                 sh 'pwd'
                 sh './jenkins/test/mvn.sh mvn test'
@@ -38,7 +38,24 @@ pipeline {
 //                 }
 //             }
         }
-        stage('building docker image') {
+        stage('Testing the frontend') {
+                    steps {
+//                         sh 'pwd'
+//                         sh './jenkins/test/mvn.sh mvn test'
+                           sh 'echo "frontend testing" '
+                    }
+
+        //             post {
+        //                 always {
+        //                     junit 'target/surefire-reports/*.xml'
+        //                 }
+        //             }
+                }
+
+
+
+
+        stage('building docker images ') {
                     steps {
                         sh './jenkins/build/build.sh'
                     }

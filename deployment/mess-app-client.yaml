@@ -14,11 +14,11 @@ spec:
     spec:                       # Spec for the containers that will run inside the Pods
       containers:
         - name: mess-app-client
-          image: callicoder/mess-app-client:1.0.0
+          image: shubhanshi/mefrontend:v3
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
-              containerPort: 80   # Should match the Port that the container listens on
+              containerPort: 3000   # Should match the Port that the container listens on
           resources:
             limits:
               cpu: 0.2
@@ -34,5 +34,5 @@ spec:
     app: mess-app-client     # Any Pod matching the label `app=mess-app-client` will be picked up by this service
   ports:                        # Forward incoming connections on port 80 to the target port 80 in the Pod
     - name: http
-      port: 80
-      targetPort: 80
+      port: 3000
+      targetPort: 3000

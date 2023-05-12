@@ -1,0 +1,30 @@
+kubernates related commands -
+
+1.minikube start
+
+2.kubectl create secret generic mysql-root-pass --from-literal=password=root
+
+3. kubectl create secret generic mysql-user-pass --from-literal=username=kakshi --from-literal=password=password
+
+4. kubectl create secret generic mysql-db-url --from-literal=database=spe_final --from-literal=url='jdbc:mysql://mess-app-mysql:3306/spe_final?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true'
+
+5.kubectl get secrets
+6.kubectl describe secrets mysql-user-pass
+7. kubectl apply -f deployment/mysql-deployment.yaml
+
+8.kubectl get persistentvolumes
+9. kubectl get persistentvolumeclaims
+10.kubectl get services
+11.kubectl get deployments
+12.kubectl exec -it mess-app-mysql-675bdff76c-9tn9m -- /bin/bash
+
+13.kubectl get pods
+14. kubectl apply -f deployment/mess-app-server.yaml 
+15. kubectl get pods
+16.minikube service mess-app-server --url
+17.kubectl apply -f deployment/mess-app-client.yaml 
+18.minikube service mess-app-client
+19.kubectl port-forward service/mess-app-server 9191:9191
+
+
+

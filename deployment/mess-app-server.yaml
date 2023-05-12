@@ -16,7 +16,7 @@ spec:
     spec:                     # Spec for the containers that will be run in the Pods
       containers:
         - name: mess-app-server
-          image:
+          image: shubhanshi/mebackend:v3
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
