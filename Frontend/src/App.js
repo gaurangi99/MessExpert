@@ -70,9 +70,9 @@ const App = () => {
         navigate("/")
     }
     return  (
+        <div data-testid="app">
         <div>
-        <div>
-            <BasicNavbar user={user} handleLogout={handleLogout}/>
+            <BasicNavbar data-testid="navbar" user={user} handleLogout={handleLogout}/>
             {
                 <Routes>
                     <Route path="/error" element={ <UnexpectedError/>}/>
@@ -92,7 +92,7 @@ const App = () => {
             }
             </div>
             <div>
-            <Footer/>
+            <Footer data-testid="footer"/>
             </div>
             
         </div>

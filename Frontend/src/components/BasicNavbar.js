@@ -5,7 +5,7 @@ function BasicNavbar({user, handleLogout}) {
   const navigate = useNavigate()
 
   return (
-      <Navbar bg="dark" variant="dark" >
+      <Navbar data-testid="navbar" bg="dark" variant="dark" >
         <Container fluid>
           <Navbar.Brand href="/"><b>MessExpert</b></Navbar.Brand>
           <Nav className="justify-content-end">

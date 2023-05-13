@@ -40,9 +40,8 @@ pipeline {
         }
         stage('Testing the frontend') {
                     steps {
-//                         sh 'pwd'
-//                         sh './jenkins/test/mvn.sh mvn test'
-                           sh 'echo "frontend testing" '
+                        sh 'pwd'
+                        sh './jenkins/test/react.sh'
                     }
 
         //             post {
