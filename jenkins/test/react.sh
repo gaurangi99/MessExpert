@@ -3,4 +3,6 @@
 echo "***************************"
 echo "** Testing the code ***********"
 echo "***************************"
-pwd
+cd Frontend
+npm install
+npm run test
