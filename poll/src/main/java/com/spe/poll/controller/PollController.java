@@ -17,6 +17,7 @@ import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -40,7 +41,7 @@ public class PollController {
     }
 
     @PostMapping("/addPoll")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> createPoll(@Valid @RequestBody PollRequest pollRequest) {
         Poll poll = pollService.createPoll(pollRequest);
 
@@ -48,8 +49,11 @@ public class PollController {
                 .fromCurrentRequest().path("/{pollId}")
                 .buildAndExpand(poll.getId()).toUri();
 
-        return ResponseEntity.created(location)
-                .body(new ApiResponse(true, "Poll Created Successfully!"));
+//        return ResponseEntity.created(location)
+//                .body(new ApiResponse(true, "Poll Created Successfully!"));
+
+//        return new ResponseEntity(new ApiResponse(true, "Poll Created Successfully!"), HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body("Poll Created Successfully!");
     }
 
     @PostMapping("/{pollId}")
@@ -59,7 +63,7 @@ public class PollController {
     }
 
     @PostMapping("/{pollId}/votes")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     public PollResponse castVote(@CurrentUser User currentUser,
                                  @PathVariable Long pollId,
                                  @Valid @RequestBody VoteRequest voteRequest) {

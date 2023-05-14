@@ -11,6 +11,11 @@ import java.util.Optional;
 public class ImageService {
     @Autowired
     private ImageRepository imageRepository;
+
+    public ImageService(ImageRepository imageRepository) {
+        this.imageRepository=imageRepository;
+    }
+
     public Image addMenu(Image image){
         Optional<Image> img=imageRepository.findByFileName("IIITB_MENU");
         Image newImg=img.get();
@@ -50,5 +55,9 @@ public class ImageService {
             return img2;
         else
             return img1;
+    }
+
+    public Boolean findMenu(){
+        return imageRepository.existsByFileName("IIITB_MENU");
     }
 }

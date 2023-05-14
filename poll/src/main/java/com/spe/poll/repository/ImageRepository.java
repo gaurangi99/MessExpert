@@ -8,5 +8,7 @@ import java.util.Optional;
 public interface ImageRepository extends JpaRepository<Image, Long> {
     Optional<Image> findByFileName(String fileName);
 
-    Image getImageByImageDataNotNull();
+    Boolean existsByFileName(String filename);
+//
+//    Image getImageByImageDataNotNull();
 }
