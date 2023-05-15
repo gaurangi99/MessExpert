@@ -29,6 +29,8 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/spe_final?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: kakshi
       SPRING_DATASOURCE_PASSWORD: password
+    volumes:
+      - /logs:/logs
 #    networks: # Networks to join (Services on the same network can communicate with each other using their name)
 #      - backend
 #      - frontend

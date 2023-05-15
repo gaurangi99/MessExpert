@@ -28,8 +28,6 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/api/auth/**")
                 .permitAll()
-                .requestMatchers("/api/polls/**")
-                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
