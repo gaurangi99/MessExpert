@@ -24,15 +24,15 @@ class ImageRepositoryTest {
         assertThat(actualResult).isTrue();
     }
 
-    @BeforeEach
-    void setUp() {
-        System.out.println("Setting up ImageRepositoryTest...");
-        Optional<Image> prevImg=imageRepository.findByFileName("IIITB_TEST_MENU");
-        if(!prevImg.equals(null)){
-            Optional<Image> prevImage = imageRepository.findByFileName("IIITB_TEST_MENU");
-            imageRepository.deleteById(prevImage.get().getId());
-        }
-    }
+//    @BeforeEach
+//    void setUp() {
+//        System.out.println("Setting up ImageRepositoryTest...");
+//        Optional<Image> prevImg=imageRepository.findByFileName("IIITB_TEST_MENU");
+//        if(!prevImg.equals(null)){
+//            Optional<Image> prevImage = imageRepository.findByFileName("IIITB_TEST_MENU");
+//            imageRepository.deleteById(prevImage.get().getId());
+//        }
+//    }
 
     @AfterEach
     void tearDown() {
