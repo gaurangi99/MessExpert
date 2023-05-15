@@ -8,20 +8,23 @@ import Timming from './Timming'
 import {Button, Col} from "reactstrap"
 
 import Sidebar from "./SidebarStudent";
+import Polling from '../Polling';
 function StudentDashboard({user}) {
     
     const falseState={
         studentHome:false,
         setting:false,
         menu:false,
-        timing:false
+        timing:false,
+        polls:false
     }
     
     const [studentState,setStudentState] = useState({
         studentHome: true,
         setting:false,
         menu:false,
-        timing:false
+        timing:false,
+        polls:false
         
     })
     const handleDashboard = (action)=> {
@@ -58,6 +61,13 @@ function StudentDashboard({user}) {
                 })
 
                 break;
+                case "POLLS":
+                setStudentState({
+                    ...falseState,
+                    polls:true
+                })
+
+                break;
             
             
         }
@@ -80,6 +90,9 @@ function StudentDashboard({user}) {
                             }
                             {
                                 studentState.timing && <Timming/>
+                            }
+                            {
+                                studentState.polls && <Polling/>
                             }
                         </div>
                     </div>

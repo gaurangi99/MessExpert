@@ -33,6 +33,11 @@ const Sidebar = ({handleDashboard}) => {
                     </button>
                 </li>
                 <li>
+                    <button onClick={()=>handleDashboard("CreatePoll")} className="nav-link text-white">
+                        Create New Poll
+                    </button>
+                </li>
+                <li>
                     <a href="#" className="nav-link text-white">
                         Polls
                     </a>

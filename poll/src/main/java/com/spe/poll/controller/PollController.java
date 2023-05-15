@@ -40,6 +40,7 @@ public class PollController {
     @PostMapping("/addPoll")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> createPoll(@Valid @RequestBody PollRequest pollRequest) {
+
         Poll poll = pollService.createPoll(pollRequest);
 
         URI location = ServletUriComponentsBuilder
@@ -51,6 +52,8 @@ public class PollController {
 
 //        return new ResponseEntity(new ApiResponse(true, "Poll Created Successfully!"), HttpStatus.OK);
         return ResponseEntity.status(HttpStatus.OK).body("Poll Created Successfully!");
+//        ApiResponse response = new ApiResponse(true, "Poll Created Successfully!");
+//        return ResponseEntity.created(location).body(response);
     }
 
     @PostMapping("/{pollId}")

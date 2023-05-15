@@ -10,6 +10,7 @@ import Setting from './SettingAdmin';
 import {Button, Col} from "reactstrap"
 
 import Sidebar from "./Sidebar";
+import NewPoll from '../../poll/NewPoll';
 
 function AdminDashboard({user}) {
 
@@ -20,6 +21,7 @@ console.log(user);
         admin:false,
         menu:false,
         specialMenu:false,
+        createPoll:false,
         setting:false
 
     }  
@@ -31,6 +33,7 @@ console.log(user);
         admin:false,
         menu:false,
         specialMenu:false,
+        createPoll:false,
         setting:false
         
     })
@@ -84,6 +87,13 @@ console.log(user);
                 })
             break;
 
+            case "CreatePoll":
+                setAdminState({
+                    ...falseState,
+                    createPoll:true,
+                })
+            break;
+
             
         }
     }
@@ -101,6 +111,7 @@ console.log(user);
                             {adminState.admin && <AdminCrud/>}
                             {adminState.menu && <Menu/>}
                             {adminState.setting&&<Setting user={user}/>}
+                            {adminState.createPoll && <NewPoll/> }
                         </div>
                     </div>
                 </div>

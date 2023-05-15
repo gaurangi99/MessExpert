@@ -24,9 +24,9 @@ const Sidebar = ({handleDashboard}) => {
                     </button>
                 </li>
                 <li>
-                    <a href="#" className="nav-link text-white">
+                <button onClick={()=>handleDashboard("POLLS")} className="nav-link text-white">
                         Polls
-                    </a>
+                    </button>
                 </li>
                 <li className="nav-item">
                     <button onClick={()=>handleDashboard("Setting")} className="nav-link text-white">
