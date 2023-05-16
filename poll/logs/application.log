@@ -46,3 +46,51 @@
 2023-05-15 16:53:24,776 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-05-15 16:53:24,779 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2023-05-15 16:53:24,807 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2023-05-15 22:34:49,147 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.spe.poll.PollApplicationTests]: PollApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-05-15 22:34:49,487 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.spe.poll.PollApplication for test class com.spe.poll.PollApplicationTests
+2023-05-15 22:34:50,122 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.0.Final
+2023-05-15 22:34:50,177 [main] INFO  com.spe.poll.PollApplicationTests - Starting PollApplicationTests using Java 17.0.6 with PID 572280 (started by kakshi in /home/kakshi/Desktop/MessExpert/poll)
+2023-05-15 22:34:50,178 [main] INFO  com.spe.poll.PollApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2023-05-15 22:34:51,321 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-05-15 22:34:51,403 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 68 ms. Found 4 JPA repository interfaces.
+2023-05-15 22:34:52,144 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-05-15 22:34:52,227 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-05-15 22:34:52,671 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2023-05-15 22:34:53,036 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2120bed
+2023-05-15 22:34:53,038 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2023-05-15 22:34:53,065 [main] INFO  SQL dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL57Dialect
+2023-05-15 22:34:53,066 [main] WARN  org.hibernate.orm.deprecation - HHH90000026: MySQL57Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2023-05-15 22:34:54,429 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-05-15 22:34:54,436 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-05-15 22:34:55,220 [main] DEBUG org.hibernate.SQL - select count(*) from users u1_0 where u1_0.id=?
+2023-05-15 22:34:55,237 [main] DEBUG org.hibernate.SQL - select count(*) from image_data i1_0 where i1_0.id=?
+2023-05-15 22:34:55,240 [main] DEBUG org.hibernate.SQL - select count(*) from image_data i1_0 where i1_0.id=?
+2023-05-15 22:34:55,578 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-05-15 22:34:55,991 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4ff233f9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1b2213b2, org.springframework.security.web.context.SecurityContextHolderFilter@472d7f34, org.springframework.security.web.header.HeaderWriterFilter@3eb4fdd5, org.springframework.web.filter.CorsFilter@bf0025d, org.springframework.security.web.authentication.logout.LogoutFilter@51617b93, com.spe.poll.config.JwtAuthenticationFilter@5b8ba1d2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@67cc5a38, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@181a6784, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@227ae4e4, org.springframework.security.web.session.SessionManagementFilter@4ce4c097, org.springframework.security.web.access.ExceptionTranslationFilter@58f27c37, org.springframework.security.web.access.intercept.AuthorizationFilter@1368ed98]
+2023-05-15 22:34:56,285 [main] INFO  com.spe.poll.PollApplicationTests - Started PollApplicationTests in 6.475 seconds (process running for 8.319)
+2023-05-15 22:34:56,566 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.spe.poll.repository.UserRepositoryTest]: UserRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-05-15 22:34:56,577 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.spe.poll.PollApplication for test class com.spe.poll.repository.UserRepositoryTest
+2023-05-15 22:34:56,621 [main] DEBUG org.hibernate.SQL - select u1_0.id from users u1_0 where u1_0.username=? limit ?
+2023-05-15 22:34:56,664 [main] DEBUG org.hibernate.SQL - select next_val as id_val from users_seq for update
+2023-05-15 22:34:56,670 [main] DEBUG org.hibernate.SQL - update users_seq set next_val= ? where next_val=?
+2023-05-15 22:34:56,727 [main] DEBUG org.hibernate.SQL - insert into users (created_at, email, food_choice, mobile, name, password, role, updated_at, username, id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2023-05-15 22:34:56,741 [main] DEBUG org.hibernate.SQL - select u1_0.id from users u1_0 where u1_0.username=? limit ?
+2023-05-15 22:34:56,888 [main] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.created_at,u1_0.email,u1_0.food_choice,u1_0.mobile,u1_0.name,u1_0.password,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2023-05-15 22:34:56,902 [main] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.created_at,u1_0.email,u1_0.food_choice,u1_0.mobile,u1_0.name,u1_0.password,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.id=?
+2023-05-15 22:34:56,908 [main] DEBUG org.hibernate.SQL - delete from users where id=?
+2023-05-15 22:34:56,929 [main] DEBUG org.hibernate.SQL - select u1_0.id from users u1_0 where u1_0.username=? limit ?
+2023-05-15 22:34:56,933 [main] DEBUG org.hibernate.SQL - insert into users (created_at, email, food_choice, mobile, name, password, role, updated_at, username, id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2023-05-15 22:34:56,942 [main] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.created_at,u1_0.email,u1_0.food_choice,u1_0.mobile,u1_0.name,u1_0.password,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2023-05-15 22:34:56,948 [main] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.created_at,u1_0.email,u1_0.food_choice,u1_0.mobile,u1_0.name,u1_0.password,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.username=?
+2023-05-15 22:34:56,951 [main] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.created_at,u1_0.email,u1_0.food_choice,u1_0.mobile,u1_0.name,u1_0.password,u1_0.role,u1_0.updated_at,u1_0.username from users u1_0 where u1_0.id=?
+2023-05-15 22:34:56,954 [main] DEBUG org.hibernate.SQL - delete from users where id=?
+2023-05-15 22:34:56,966 [main] INFO  o.s.t.c.s.AnnotationConfigContextLoaderUtils - Could not detect default configuration classes for test class [com.spe.poll.repository.ImageRepositoryTest]: ImageRepositoryTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-05-15 22:34:56,968 [main] INFO  o.s.b.t.c.SpringBootTestContextBootstrapper - Found @SpringBootConfiguration com.spe.poll.PollApplication for test class com.spe.poll.repository.ImageRepositoryTest
+2023-05-15 22:34:56,977 [main] DEBUG org.hibernate.SQL - insert into image_data (file_name, image_data) values (?, ?)
+2023-05-15 22:34:56,989 [main] DEBUG org.hibernate.SQL - select i1_0.id from image_data i1_0 where i1_0.file_name=? limit ?
+2023-05-15 22:34:56,993 [main] DEBUG org.hibernate.SQL - select i1_0.id,i1_0.file_name,i1_0.image_data from image_data i1_0 where i1_0.file_name=?
+2023-05-15 22:34:56,999 [main] DEBUG org.hibernate.SQL - select i1_0.id,i1_0.file_name,i1_0.image_data from image_data i1_0 where i1_0.id=?
+2023-05-15 22:34:57,001 [main] DEBUG org.hibernate.SQL - delete from image_data where id=?
+2023-05-15 22:34:57,202 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-05-15 22:34:57,204 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2023-05-15 22:34:57,213 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
